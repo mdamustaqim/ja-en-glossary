@@ -1,7 +1,7 @@
-Attribute VB_Name = "Module1"
 Sub Search()
 'PURPOSE: Filter Data on User-Determined Column & Text
 'SOURCE: www.TheSpreadsheetGuru.com
+'Adapted from Source
 
 Dim myButton As OptionButton
 Dim MyVal As Long
@@ -26,11 +26,8 @@ Dim LastRow As Long
    
 'Filtered Data Range (include column heading cells)
   Set DataRange = sht.Range("A6:B" & LastRow) 'Cell Range
-  'Set DataRange = sht.ListObjects("Table1").Range 'Table
 
 'Retrieve User's Search Input
-  'mySearch = sht.Shapes("UserSearch").TextFrame.Characters.Text 'Control Form
-  'mySearch = sht.OLEObjects("UserSearch").Object.Text 'ActiveX Control
   mySearch = sht.Range("B3").Value 'Cell Input
 
 'Loop Through Option Buttons
@@ -79,9 +76,11 @@ Dim sht As Worksheet
   
   Set sht = ActiveSheet
   LastRow = sht.Cells.Find("*", searchorder:=xlByRows, searchdirection:=xlPrevious).Row
+  
   If IsEmpty(Range("P3").Value) = True Or IsEmpty(Range("M3").Value) = True Then
     MsgBox "Fill in both boxes!"
   Else
+    ''Take both cell inputs, add to dictionary and clear inputs
     sht.Range("A" & LastRow + 1).Value = sht.Range("M3").Value
     sht.Range("B" & LastRow + 1).Value = sht.Range("P3").Value
     sht.Range("M3").Value = ""
