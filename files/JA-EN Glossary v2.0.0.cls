@@ -9,6 +9,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
 Private Sub ClearButton_Click()
 Private Sub ClearButton_Click()
+Private Sub ClearButton_Click()
 
 With ActiveSheet
   If .FilterMode Then .ShowAllData
